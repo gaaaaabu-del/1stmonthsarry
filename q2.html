@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 2</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-noise"></div>
+
+    <div class="page-noise"></div>
+
+    <!-- 6 Decorative Kuromi Background Positions -->
+    <img src="images/kuromi-left.png" class="kuromi-bg-left" alt="">
+    <img src="images/kuromi-right.png" class="kuromi-bg-right" alt="">
+    <img src="images/kuromi-3.png" class="kuromi-bg-top-left" alt="">
+    <img src="images/kuromi-4.png" class="kuromi-bg-bottom-right" alt="">
+    <img src="images/kuromi-5.png" class="kuromi-bg-center-left" alt="">
+    <img src="images/kuromi-6.png" class="kuromi-bg-center-right" alt="">
+
+
+  <main class="shell">
+    <span class="question-number">Question 02</span>
+    <h2>My favorite food/dish</h2>
+    
+    <form id="quiz-form" class="options-group">
+      <label class="option">
+        <input type="radio" name="answer" value="a">
+        <span class="choice-letter">A</span>
+        <span>paa ng langgam</span>
+      </label>
+      <label class="option">
+        <input type="radio" name="answer" value="b">
+        <span class="choice-letter">B</span>
+        <span>Octopus na Hotdog</span>
+      </label>
+      <label class="option">
+        <input type="radio" name="answer" value="c">
+        <span class="choice-letter">C</span>
+        <span>buntot ng dinosaur</span>
+      </label>
+      <label class="option">
+        <input type="radio" name="answer" value="d">
+        <span class="choice-letter">D</span>
+        <span>IKAW hihi</span>
+      </label>
+    </form>
+
+    <p id="error-msg" class="error-text"></p>
+
+    <div class="nav-buttons">
+      <a href="q1.html" class="secondary-button">← Back to Q1</a>
+      <button type="button" onclick="checkQuestion('d', 'q3.html')" class="primary-button">Next Question ✦</button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

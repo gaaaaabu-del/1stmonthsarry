@@ -1,0 +1,443 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --ink: #0d0514;
+  --purple: #9d4edf;
+  --purple-deep: #5a189a;
+  --purple-dark: #240046;
+  --lavender: #c77dff;
+  --lavender-soft: #28113f;
+  --pink: #ff52b4;
+  --pink-bright: #ff79c6;
+  --yellow: #f5e64c;
+  --paper: #190b28;
+  --card-bg: #210d35;
+  --text-main: #f8f6ff;
+  --line: 2px;
+  --shadow: 7px 7px 0 #000000;
+  --shadow-pink: 6px 6px 0 var(--pink);
+  --shadow-purple: 6px 6px 0 var(--purple);
+  --radius: 18px;
+  --display: 'Space Grotesk', 'Arial Rounded MT Bold', 'Trebuchet MS', sans-serif;
+  --mono: 'DM Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: var(--text-main);
+  background: #0f0518;
+  font-family: var(--display);
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0;
+}
+
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+
+/* Dark Goth/Kuromi Background Noise */
+.page-noise {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .35;
+  background-image: 
+    linear-gradient(45deg, rgba(157, 78, 223, 0.15) 25%, transparent 25%), 
+    linear-gradient(-45deg, rgba(157, 78, 223, 0.15) 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, rgba(157, 78, 223, 0.15) 75%), 
+    linear-gradient(-45deg, transparent 75%, rgba(157, 78, 223, 0.15) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  mask-image: linear-gradient(to bottom, black, transparent 95%);
+}
+
+.shell {
+  width: min(550px, calc(100% - 32px));
+  margin-inline: auto;
+  padding: 30px;
+  border: var(--line) solid var(--purple);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background: var(--paper);
+}
+
+.eyebrow, .lock-label, .quiz-count, .question-number, .error-text, .letter-paper, .reset-button {
+  font-family: var(--mono);
+}
+
+.eyebrow {
+  margin: 0 0 12px 0;
+  color: var(--pink);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.eyebrow-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--pink);
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+
+h1, h2, p { margin-top: 0; }
+
+h1 {
+  font-size: clamp(32px, 5vw, 42px);
+  font-weight: 700;
+  letter-spacing: -.04em;
+  line-height: 1.1;
+  color: var(--text-main);
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 0 #000;
+}
+
+h2 {
+  font-size: clamp(26px, 4vw, 34px);
+  letter-spacing: -.04em;
+  color: var(--text-main);
+  margin-bottom: 15px;
+}
+
+p {
+  color: var(--lavender);
+  font-size: 15px;
+  line-height: 1.55;
+  margin-bottom: 22px;
+}
+
+.question-number {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--pink);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.options-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 46px;
+  padding: 10px 14px;
+  color: var(--text-main);
+  font-size: 13px;
+  background: var(--card-bg);
+  border: var(--line) solid var(--purple-deep);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+
+.option:hover {
+  color: #fff;
+  background: #2b1145;
+  border-color: var(--purple);
+}
+
+.option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.choice-letter {
+  display: grid;
+  flex: 0 0 24px;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  color: var(--pink);
+  font: 500 11px/1 var(--mono);
+  border: 1px solid var(--pink);
+  border-radius: 50%;
+}
+
+.option:has(input:checked) {
+  color: #fff;
+  background: var(--purple-deep);
+  border-color: var(--pink);
+  box-shadow: 3px 3px 0 #000;
+}
+
+.option:has(input:checked) .choice-letter {
+  color: #000;
+  background: var(--pink);
+  border-color: #000;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.primary-button, .secondary-button {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  border: var(--line) solid #000;
+  border-radius: 8px;
+  transition: transform .16s, box-shadow .16s;
+  cursor: pointer;
+}
+
+.primary-button {
+  padding: 12px 18px;
+  color: #fff;
+  font-size: 12px;
+  background: var(--pink);
+  box-shadow: 4px 4px 0 #000;
+}
+
+.secondary-button {
+  padding: 12px 18px;
+  color: #fff;
+  font-size: 12px;
+  background: var(--purple-deep);
+  border-color: var(--pink);
+  box-shadow: 4px 4px 0 #000;
+}
+
+.primary-button:hover, .secondary-button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #000;
+}
+
+.error-text {
+  min-height: 20px;
+  color: var(--pink);
+  font-size: 11px;
+  letter-spacing: .02em;
+  margin-bottom: 12px;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.photo-card {
+  padding: 8px;
+  background: var(--card-bg);
+  border: var(--line) solid var(--purple);
+  box-shadow: 4px 4px 0 #000;
+}
+
+.photo-frame {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+  border: 1px solid #000;
+  background: var(--purple-dark);
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.letter-paper {
+  position: relative;
+  padding: 20px;
+  background: #12061c;
+  border: var(--line) solid var(--purple);
+  border-radius: 9px;
+  box-shadow: 5px 5px 0 var(--pink);
+  margin-bottom: 24px;
+}
+
+.letter-paper p {
+  color: var(--text-main);
+  font-size: 15px;
+  line-height: 1.75;
+  margin: 0;
+}
+
+@media (max-width: 620px) {
+  .shell { padding: 20px 16px; }
+  .nav-buttons { flex-direction: column; }
+  .primary-button, .secondary-button { width: 100%; }
+}
+
+/* Page Transition Animations */
+body {
+  animation: pageFadeIn 0.4s ease-out forwards;
+}
+
+body.page-exit {
+  animation: pageFadeOut 0.3s ease-in forwards;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pageFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.97);
+  }
+}
+
+/* Page Transition Animations */
+body {
+  animation: pageFadeIn 0.4s ease-out forwards;
+}
+
+body.page-exit {
+  animation: pageFadeOut 0.3s ease-in forwards;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pageFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.97);
+  }
+}
+
+
+
+/* Decorative Background Elements & Transparency */
+.kuromi-bg-left,
+.kuromi-bg-right,
+.kuromi-bg-top-left,
+.kuromi-bg-bottom-right,
+.kuromi-bg-center-left,
+.kuromi-bg-center-right {
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.25; /* Semi-transparent background level */
+  mix-blend-mode: screen; /* Blends away solid white backgrounds into the dark theme */
+  filter: drop-shadow(0 0 12px var(--purple));
+  transition: transform 0.3s ease;
+}
+
+/* Position adjustments for 6 Kuromi background spots */
+.kuromi-bg-left {
+  bottom: 25px;
+  left: 20px;
+  width: 170px;
+  transform: rotate(-12deg);
+}
+
+.kuromi-bg-right {
+  top: 20px;
+  right: 25px;
+  width: 160px;
+  transform: rotate(14deg);
+}
+
+.kuromi-bg-top-left {
+  top: 25px;
+  left: 25px;
+  width: 140px;
+  transform: rotate(-8deg);
+}
+
+.kuromi-bg-bottom-right {
+  bottom: 20px;
+  right: 20px;
+  width: 150px;
+  transform: rotate(10deg);
+}
+
+.kuromi-bg-center-left {
+  top: 45%;
+  left: 10px;
+  width: 130px;
+  transform: translateY(-50%) rotate(-15deg);
+}
+
+.kuromi-bg-center-right {
+  top: 45%;
+  right: 10px;
+  width: 130px;
+  transform: translateY(-50%) rotate(15deg);
+}
+
+@media (max-width: 768px) {
+  .kuromi-bg-left, .kuromi-bg-right, 
+  .kuromi-bg-top-left, .kuromi-bg-bottom-right,
+  .kuromi-bg-center-left, .kuromi-bg-center-right {
+    opacity: 0.15;
+    width: 80px;
+  }
+}
+
+/* Letter Salutation & Sign-off */
+.letter-salutation {
+  font-weight: bold;
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+  color: var(--pink, #ff52b4);
+}
+
+.letter-valediction {
+  margin-top: 20px;
+  text-align: right;
+  font-style: italic;
+  color: #e0aaff;
+}
+
+.letter-valediction strong {
+  display: block;
+  font-style: normal;
+  font-size: 1.1rem;
+  margin-top: 4px;
+  color: var(--pink, #ff52b4);
+}

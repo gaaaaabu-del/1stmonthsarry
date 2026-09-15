@@ -1,0 +1,59 @@
+[q1.html]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 1</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-noise"></div>
+
+    <!-- 6 Decorative Kuromi Background Positions -->
+    <img src="images/kuromi-left.png" class="kuromi-bg-left" alt="">
+    <img src="images/kuromi-right.png" class="kuromi-bg-right" alt="">
+    <img src="images/kuromi-3.png" class="kuromi-bg-top-left" alt="">
+    <img src="images/kuromi-4.png" class="kuromi-bg-bottom-right" alt="">
+    <img src="images/kuromi-5.png" class="kuromi-bg-center-left" alt="">
+    <img src="images/kuromi-6.png" class="kuromi-bg-center-right" alt="">
+
+
+  <main class="shell">
+    <span class="question-number">Question 01</span>
+    <h2>Where was our first date?</h2>
+    
+    <form id="quiz-form" class="options-group">
+      <label class="option">
+        <input type="radio" name="answer" value="a">
+        <span class="choice-letter">A</span>
+        <span>Antartica</span>
+      </label>
+      <label class="option">
+        <input type="radio" name="answer" value="b">
+        <span class="choice-letter">B</span>
+        <span>WOF (Sta. Lucia) &amp; Jollibee</span>
+      </label>
+      <label class="option">
+        <input type="radio" name="answer" value="c">
+        <span class="choice-letter">C</span>
+        <span>Sa moon</span>
+      </label>
+      <label class="option">
+        <input type="radio" name="answer" value="d">
+        <span class="choice-letter">D</span>
+        <span>Burakay</span>
+      </label>
+    </form>
+
+    <p id="error-msg" class="error-text"></p>
+
+    <div class="nav-buttons">
+      <a href="index.html" class="secondary-button">← Back to Home</a>
+      <button type="button" onclick="checkQuestion('b', 'q2.html')" class="primary-button">Next Question ✦</button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
