@@ -18,11 +18,11 @@ const wrongMessages = [
 
 // Fixed quiz question handler with randomized error messages
 function checkQuestion(correctValue, nextPageUrl) {
-  const selected = document.querySelector('input[name="an swer"]:checked');
+  const selected = document.querySelector('input[name="answer"]:checked');
   const errorMsg = document.getElementById('error-msg');
 
   if (!selected) {
-    if (errorMsg) errorMsg.textContent = "pumili ka naman baby";
+    if (errorMsg) errorMsg.textContent = "pumili ka naman";
     return;
   }
 
@@ -36,7 +36,6 @@ function checkQuestion(correctValue, nextPageUrl) {
     }
   }
 }
-
 // 1. COLLAGE PAGE: Classic Vibrant Party Blast (Circles & Stars)
 function triggerCollageCelebration() {
   if (typeof confetti === 'function') {
