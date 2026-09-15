@@ -16,19 +16,9 @@ const wrongMessages = [
   "ILOVEYOU PERO BAT GANYAN???"
 ];
 
-// Array of randomized wrong answer messages
-const wrongMessages = [
-  "LUH, KILALA MO BA TALAGA AKO??",
-  "mali talaga bes",
-  "MAAMAAAAAAAAA",
-  "ENGKKK MALI KA",
-  "sige, kakainin talaga kita",
-  "ILOVEYOU PERO BAT GANYAN???"
-];
-
 // Fixed quiz question handler with randomized error messages
 function checkQuestion(correctValue, nextPageUrl) {
-  const selected = document.querySelector('input[name="answer"]:checked');
+  const selected = document.querySelector('input[name="an swer"]:checked');
   const errorMsg = document.getElementById('error-msg');
 
   if (!selected) {
