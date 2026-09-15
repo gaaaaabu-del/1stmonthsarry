@@ -6,20 +6,44 @@ function navigateTo(url) {
   }, 250);
 }
 
-// Fixed quiz question handler
+// Array of randomized wrong answer messages
+const wrongMessages = [
+  "LUH, KILALA MO BA TALAGA AKO??",
+  "mali talaga bes",
+  "MAAMAAAAAAAAA",
+  "ENGKKK MALI KA",
+  "sige, kakainin talaga kita",
+  "ILOVEYOU PERO BAT GANYAN???"
+];
+
+// Array of randomized wrong answer messages
+const wrongMessages = [
+  "LUH, KILALA MO BA TALAGA AKO??",
+  "mali talaga bes",
+  "MAAMAAAAAAAAA",
+  "ENGKKK MALI KA",
+  "sige, kakainin talaga kita",
+  "ILOVEYOU PERO BAT GANYAN???"
+];
+
+// Fixed quiz question handler with randomized error messages
 function checkQuestion(correctValue, nextPageUrl) {
   const selected = document.querySelector('input[name="answer"]:checked');
   const errorMsg = document.getElementById('error-msg');
 
   if (!selected) {
-    if (errorMsg) errorMsg.textContent = "choose one first ✦";
+    if (errorMsg) errorMsg.textContent = "pumili ka naman baby";
     return;
   }
 
   if (selected.value === correctValue) {
     navigateTo(nextPageUrl);
   } else {
-    if (errorMsg) errorMsg.textContent = "not quite — try again ♡";
+    if (errorMsg) {
+      // Pick a random message from the array
+      const randomIndex = Math.floor(Math.random() * wrongMessages.length);
+      errorMsg.textContent = wrongMessages[randomIndex];
+    }
   }
 }
 
